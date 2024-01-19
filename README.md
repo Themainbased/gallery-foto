@@ -17,6 +17,7 @@ Gallery foto sebuah platform sosial media berbasis gambar
 - Like
 - Komentar
 - Album
+- Edit Data Pribadi
 - Upsize Foto Size
 
 ## Alert
@@ -26,7 +27,7 @@ Code ini saya buat dengan bantuan turtorial youtube (Retype) dan sedikit dirubah
 dan sumber browser dari <MalasNgoding.com> untuk metode upload data gambar. 
 
 
-© 2023 Muhammad Ardiansyah Hermawan 
+©2024 Muhammad Ardiansyah Hermawan 
 
 ## Tata Cara Penggunaan
 - Install Xampp
