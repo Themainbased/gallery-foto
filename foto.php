@@ -21,7 +21,8 @@ if (!isset($_SESSION['userid'])) {
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="#">Gallery Foto Ardi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -30,11 +31,12 @@ if (!isset($_SESSION['userid'])) {
                 <li class="nav-item "><a class="nav-link" href="album.php">Album</a></li>
                 <li class="nav-item active"><a class="nav-link" href="foto.php">Foto</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?= $_SESSION['namalengkap'] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="profile.php">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
@@ -70,7 +72,7 @@ if (!isset($_SESSION['userid'])) {
                     $sql = mysqli_query($conn, "SELECT * from album where userid='$userid'");
                     while ($data = mysqli_fetch_array($sql)) {
                     ?>
-                        <option value="<?= $data['albumid'] ?>"><?= $data['namaalbum'] ?></option>
+                    <option value="<?= $data['albumid'] ?>"><?= $data['namaalbum'] ?></option>
                     <?php
                     }
                     ?>
@@ -104,27 +106,28 @@ if (!isset($_SESSION['userid'])) {
                     while ($data = mysqli_fetch_array($sql)) {
                         $modifiedFotoid = PHP_INT_MAX - $data['fotoid'] + 1; //Manipulate id from user
                     ?>
-                        <tr>
-                            <td><?= $modifiedFotoid ?></td>
-                            <td><?= $data['judulfoto'] ?></td>
-                            <td><?= $data['deskripsifoto'] ?></td>
-                            <td><?= $data['tanggalunggah'] ?></td>
-                            <td>
-                                <img src="gambar/<?= $data['lokasifile'] ?>" width="200px" class="img-thumbnail">
-                            </td>
-                            <td><?= $data['namaalbum'] ?></td>
-                            <td>
-                                <?php
+                    <tr>
+                        <td><?= $modifiedFotoid ?></td>
+                        <td><?= $data['judulfoto'] ?></td>
+                        <td><?= $data['deskripsifoto'] ?></td>
+                        <td><?= $data['tanggalunggah'] ?></td>
+                        <td>
+                            <img src="gambar/<?= $data['lokasifile'] ?>" width="200px" class="img-thumbnail">
+                        </td>
+                        <td><?= $data['namaalbum'] ?></td>
+                        <td>
+                            <?php
                                 $fotoid = $data['fotoid'];
                                 $sql2 = mysqli_query($conn, "SELECT * FROM likefoto WHERE fotoid='$fotoid'");
                                 echo mysqli_num_rows($sql2);
                                 ?>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger" onclick="confirmDelete(<?= $data['fotoid'] ?>)">Hapus</button>
-                                <a href="edit_foto.php?fotoid=<?= $data['fotoid'] ?>" class="btn btn-info">Edit</a>
-                            </td>
-                        </tr>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger"
+                                onclick="confirmDelete(<?= $data['fotoid'] ?>)">Hapus</button>
+                            <a href="edit_foto.php?fotoid=<?= $data['fotoid'] ?>" class="btn btn-info">Edit</a>
+                        </td>
+                    </tr>
                     <?php
                     }
                     ?>
@@ -134,12 +137,12 @@ if (!isset($_SESSION['userid'])) {
     </div>
 
     <script>
-        function confirmDelete(fotoid) {
-            var confirmation = confirm("Apakah Anda yakin ingin menghapus foto ini?");
-            if (confirmation) {
-                window.location.href = "hapus_foto.php?fotoid=" + fotoid;
-            }
+    function confirmDelete(fotoid) {
+        var confirmation = confirm("Apakah Anda yakin ingin menghapus foto ini?");
+        if (confirmation) {
+            window.location.href = "hapus_foto.php?fotoid=" + fotoid;
         }
+    }
     </script>
 
     <!-- Add Bootstrap JS and Popper.js scripts here -->
