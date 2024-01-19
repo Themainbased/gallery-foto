@@ -17,6 +17,7 @@ Gallery foto sebuah platform sosial media berbasis gambar
 - Like
 - Komentar
 - Album
+- Edit Data Pribadi
 - Upsize Foto Size
 
 ## Alert
