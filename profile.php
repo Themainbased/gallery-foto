@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('koneksi.php'); // Ensure this file includes database connection
+include('koneksi.php');
 
 // Check if the user is already logged in
 if (!isset($_SESSION['userid'])) {
@@ -10,25 +10,22 @@ if (!isset($_SESSION['userid'])) {
 
 // Get user data from the session
 $userid = $_SESSION['userid'];
-$currentUsername = $_SESSION['namalengkap'];
 
 // Process data editing
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ... (rest of your code)
-    $newUsername = $_POST["username"];
     $newEmail = $_POST["email"];
     $newFullName = $_POST["namalengkap"];
     $newAddress = $_POST["alamat"];
-    
+
     // Perform data update
-    $updateQuery = "UPDATE user SET username=?, email=?, namalengkap=?, alamat=? WHERE userid=?";
+    $updateQuery = "UPDATE user SET email=?, namalengkap=?, alamat=? WHERE userid=?";
     $stmt = $conn->prepare($updateQuery);
 
     if ($stmt === false) {
         die("Error in query: " . $conn->error);
     }
 
-    $stmt->bind_param('ssssi', $newUsername, $newEmail, $newFullName, $newAddress, $userid);
+    $stmt->bind_param('sssi', $newEmail, $newFullName, $newAddress, $userid);
 
     if ($stmt->execute()) {
         // Update session with new data
@@ -76,7 +73,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,26 +101,16 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 
         <form method="POST" action="profile.php">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username"
-                    value="<?php echo htmlspecialchars($currentUsername); ?>" required>
-            </div>
-            <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email"
-                    value="<?php echo isset($userData['email']) ? htmlspecialchars($userData['email']) : ''; ?>"
-                    required>
+                <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($userData['email']) ? htmlspecialchars($userData['email']) : ''; ?>" required>
             </div>
             <div class="form-group">
                 <label for="namalengkap">Full Name:</label>
-                <input type="text" class="form-control" id="namalengkap" name="namalengkap"
-                    value="<?php echo isset($userData['namalengkap']) ? htmlspecialchars($userData['namalengkap']) : ''; ?>"
-                    required>
+                <input type="text" class="form-control" id="namalengkap" name="namalengkap" value="<?php echo isset($userData['namalengkap']) ? htmlspecialchars($userData['namalengkap']) : ''; ?>" required>
             </div>
             <div class="form-group">
                 <label for="alamat">Address:</label>
-                <textarea class="form-control" id="alamat" name="alamat"
-                    rows="3"><?php echo isset($userData['alamat']) ? htmlspecialchars($userData['alamat']) : ''; ?></textarea>
+                <textarea class="form-control" id="alamat" name="alamat" rows="3"><?php echo isset($userData['alamat']) ? htmlspecialchars($userData['alamat']) : ''; ?></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="foto.php" class="btn btn-danger">Back To Menu</a>
