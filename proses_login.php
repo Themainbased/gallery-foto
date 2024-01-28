@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($data && password_verify($password, $data['password'])) {
             $_SESSION['userid'] = $data['userid'];
             $_SESSION['namalengkap'] = $data['namalengkap'];
-            header("location: home.php");
+            header("location: index.php");
             exit();
         } else {
             echo "Username atau password salah";
