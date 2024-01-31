@@ -11,13 +11,12 @@ Gallery foto sebuah platform sosial media berbasis gambar
 
 ## Fitur
 
-- Unique ID ( Pengemanan id )
+- Unique ID ( Pengamanan id )
 - Encryption ( data password user )
 - Profile ( Edit data pribadi user )
 - Like
 - Komentar
 - Album
-- Edit Data Pribadi
 - Upsize Foto Size
 
 ## Alert
@@ -37,6 +36,3 @@ https://youtube.com/playlist?list=PLc68FDvlyTaIDVz1zG-FVdVb5XW29aGT3&si=WWzsDduD
 - Import database ( .sql )
 - Sistem siap untuk digunakan 
 
-## Lisensi
-
-Non - Project [ Gunakan dengan bebas code ini ]
