@@ -26,6 +26,8 @@ Gunakan kode ini dengan bijak '_'
 Code ini saya buat dengan bantuan turtorial youtube (Retype) dan sedikit dirubah oleh saya. 
 dan sumber browser dari <MalasNgoding.com> untuk metode upload data gambar. 
 
+Sumber Retype:
+https://youtube.com/playlist?list=PLc68FDvlyTaIDVz1zG-FVdVb5XW29aGT3&si=WWzsDduDe3aWabDi By ( Alja Soft )
 
 ©2024 Muhammad Ardiansyah Hermawan 
 
