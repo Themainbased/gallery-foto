@@ -44,6 +44,9 @@
                        <input type="submit" value="Register" class="btn btn-primary">
                     </div>
                 </form>
+                <div class="text-center mt-3">
+                    Already have an account? <a href="login.php">Login here</a>.
+                </div>
             </div>
         </div>
     </div>

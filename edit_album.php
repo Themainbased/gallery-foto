@@ -17,7 +17,7 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Halaman Album</a>
+        <a class="navbar-brand" href="#"><img src="resources/logo/logo.png" width="50px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,14 +41,14 @@
     </nav>
     <div class="container">
         <h1 class="mt-5">Halaman Edit Album</h1>
-        <p>Hi, <b><?=$_SESSION['namalengkap']?></b></p>
+        <p>Hai, <b><?=$_SESSION['namalengkap']?></b></p>
 
 
         <form action="update_album.php" method="post">
             <?php
                 include "koneksi.php";
                 $albumid=$_GET['albumid'];
-                $sql=mysqli_query($conn, "select * from album where albumid='$albumid'");
+                $sql=mysqli_query($conn, "SELECT * from album where albumid='$albumid'");
                 while($data=mysqli_fetch_array($sql)){
             ?>
             <input type="text" name="albumid" value="<?=$data['albumid']?>" hidden>

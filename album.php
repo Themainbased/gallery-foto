@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['userid'])){
-        header("location:login.php");
-    }
+session_start();
+if (!isset($_SESSION['userid'])) {
+    header("location:login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +15,10 @@
     <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-    body {
-        padding-top: 56px;
-        /* Adjusted for the fixed navbar height */
-    }
+        body {
+            padding-top: 56px;
+            /* Adjusted for the fixed navbar height */
+        }
     </style>
 </head>
 
@@ -26,9 +26,8 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Halaman Album</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img src="resources/logo/logo.png" width="50px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -37,12 +36,11 @@
                 <li class="nav-item active"><a class="nav-link" href="album.php">Album</a></li>
                 <li class="nav-item"><a class="nav-link" href="foto.php">Foto</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?=$_SESSION['namalengkap']?>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?= $_SESSION['namalengkap'] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="profile.php">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
@@ -53,7 +51,7 @@
 
     <div class="container mt-5">
         <h1>Halaman Album</h1>
-        <p>Hai, <b><?=$_SESSION['namalengkap']?></b></p>
+        <p>Hai, <b> <?= $_SESSION['namalengkap'] ?></b></p>
 
         <!-- Form Tambah Album -->
         <form action="tambah_album.php" method="post">
@@ -81,23 +79,23 @@
             </thead>
             <tbody>
                 <?php
-                    include "koneksi.php";
-                    $userid=$_SESSION['userid'];
-                    $sql=mysqli_query($conn, "select * from album where userid='$userid'");
-                    while($data=mysqli_fetch_array($sql)){
+                include "koneksi.php";
+                $userid = $_SESSION['userid'];
+                $sql = mysqli_query($conn, "select * from album where userid='$userid'");
+                while ($data = mysqli_fetch_array($sql)) {
                 ?>
-                <tr>
-                    <td><?=$data['albumid']?></td>
-                    <td><?=$data['namaalbum']?></td>
-                    <td><?=$data['deskripsi']?></td>
-                    <td><?=$data['tanggaldibuat']?></td>
-                    <td>
-                        <a href="hapus_album.php?albumid=<?=$data['albumid']?>" class="btn btn-danger">Hapus</a>
-                        <a href="edit_album.php?albumid=<?=$data['albumid']?>" class="btn btn-warning">Edit</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $data['albumid'] ?></td>
+                        <td><?= $data['namaalbum'] ?></td>
+                        <td><?= $data['deskripsi'] ?></td>
+                        <td><?= $data['tanggaldibuat'] ?></td>
+                        <td>
+                            <a href="hapus_album.php?albumid=<?= $data['albumid'] ?>" class="btn btn-danger">Hapus</a>
+                            <a href="edit_album.php?albumid=<?= $data['albumid'] ?>" class="btn btn-warning">Edit</a>
+                        </td>
+                    </tr>
                 <?php
-                    }
+                }
                 ?>
             </tbody>
         </table>

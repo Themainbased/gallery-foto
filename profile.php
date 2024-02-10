@@ -37,6 +37,10 @@ if (!isset($_SESSION['userid'])) {
 
         <br>
         <form method="POST" action="profile.php" >
+        <div class="form-group">
+                <label for="email">username</label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($userData['username']) ? htmlspecialchars($userData['username']) : ''; ?> " disabled>
+            </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" value="<?php echo isset($userData['email']) ? htmlspecialchars($userData['email']) : ''; ?>" required>

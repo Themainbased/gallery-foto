@@ -10,14 +10,14 @@
         $userid=$_SESSION['userid'];
         //cek apakah user sudah like foto ini apa belum
 
-        $sql=mysqli_query($conn,"select * from likefoto where fotoid='$fotoid' and userid='$userid'");
+        $sql=mysqli_query($conn,"SELECT * from likefoto where fotoid='$fotoid' and userid='$userid'");
 
         if(mysqli_num_rows($sql)==1){
             //user sudah like foto ini
             header("location:index.php");
         }else{
             $tanggallike=date("Y-m-d");
-            mysqli_query($conn,"insert into likefoto values('','$fotoid','$userid','$tanggallike')");
+            mysqli_query($conn,"INSERT into likefoto values('','$fotoid','$userid','$tanggallike')");
             header("location:index.php");
         }
     }

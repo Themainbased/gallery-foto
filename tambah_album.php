@@ -7,6 +7,6 @@
     $tanggaldibuat = date("Y-m-d");
     $userid = $_SESSION['userid'];
 
-    $sql = mysqli_query($conn,"insert into album values('','$namaalbum','$deskripsi','$tanggaldibuat','$userid')");
+    $sql = mysqli_query($conn,"INSERT into album values('','$namaalbum','$deskripsi','$tanggaldibuat','$userid')");
     header("location:album.php");
 ?>

@@ -25,9 +25,11 @@
                         <input type="password" class="form-control" name="password" required>
                     </div>
 
-                    <div class="text-center">
-                       <input type="submit" value="Login" class="btn btn-primary">
+                    <div class="d-grid mb-3">
+                       <button type="submit" class="btn btn-primary">Login</button>
                     </div>
+
+                    <p class="text-center">Don't have an account? <a href="register.php">Register here</a>.</p>
                 </form>
             </div>
         </div>

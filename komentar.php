@@ -20,7 +20,7 @@ if (!isset($_SESSION['userid'])) {
 
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Gallery Foto Ardi</a>
+        <a class="navbar-brand" href="#"><img src="resources/logo/logo.png" width="50px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['userid'])) {
                         <?= $_SESSION['namalengkap'] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="profile.php">Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Logout</a>
                     </div>
@@ -51,13 +51,14 @@ if (!isset($_SESSION['userid'])) {
             <?php
             include "koneksi.php";
             $fotoid = $_GET['fotoid'];
-            $sql = mysqli_query($conn, "select * from foto where fotoid='$fotoid'");
+            $sql = mysqli_query($conn, "SELECT * from foto where fotoid='$fotoid'");
             while ($data = mysqli_fetch_array($sql)) {
             ?>
                 <input type="text" name="fotoid" value="<?= $data['fotoid'] ?>" hidden>
 
                 <div class="card mt-3">
                     <div class="card-body">
+                        <img src="gambar/<?= $data['lokasifile'] ?>" class="card-img-top img-fluid">
                         <h5 class="card-title"><?= $data['judulfoto'] ?></h5>
                         <p class="card-text"><?= $data['deskripsifoto'] ?></p>
                         <div class="form-group">
@@ -66,18 +67,16 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <input type="submit" class="btn btn-primary" value="Tambah">
                     </div>
-                </div>
-
-            <?php
+                <?php
             }
-            ?>
+                ?>
         </form>
 
         <div class="mt-5">
             <?php
             include "koneksi.php";
             $userid = $_SESSION['userid'];
-            $sql = mysqli_query($conn, "select * from komentarfoto,user where komentarfoto.userid='$userid' and komentarfoto.userid=user.userid");
+            $sql = mysqli_query($conn, "SELECT* from komentarfoto,user where komentarfoto.userid='$userid' and komentarfoto.userid=user.userid");
             while ($data = mysqli_fetch_array($sql)) {
             ?>
                 <div class="card mt-3">

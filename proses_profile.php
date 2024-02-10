@@ -5,19 +5,20 @@ $userid = $_SESSION['userid'];
 
 // Process data editing
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $newUsername = $_POST["username"];
     $newEmail = $_POST["email"];
     $newFullName = $_POST["namalengkap"];
     $newAddress = $_POST["alamat"];
 
     // Perform data update
-    $updateQuery = "UPDATE user SET email=?, namalengkap=?, alamat=? WHERE userid=?";
+    $updateQuery = "UPDATE user SET username=?, email=?, namalengkap=?, alamat=? WHERE userid=?";
     $stmt = $conn->prepare($updateQuery);
 
     if ($stmt === false) {
         die("Error in query: " . $conn->error);
     }
 
-    $stmt->bind_param('sssi', $newEmail, $newFullName, $newAddress, $userid);
+    $stmt->bind_param('ssssi', $newUsername, $newEmail, $newFullName, $newAddress, $userid);
 
     if ($stmt->execute()) {
         // Update session with new data
