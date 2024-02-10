@@ -11,13 +11,12 @@ Gallery foto sebuah platform sosial media berbasis gambar
 
 ## Fitur
 
-- Unique ID ( Pengemanan id )
-- Encryption ( data user )
+- Unique ID ( Pengamanan id )
+- Encryption ( data password user )
 - Profile ( Edit data pribadi user )
 - Like
 - Komentar
 - Album
-- Edit Data Pribadi
 - Upsize Foto Size
 
 ## Alert
@@ -26,6 +25,8 @@ Gunakan kode ini dengan bijak '_'
 Code ini saya buat dengan bantuan turtorial youtube (Retype) dan sedikit dirubah oleh saya. 
 dan sumber browser dari <MalasNgoding.com> untuk metode upload data gambar. 
 
+Sumber Retype:
+https://youtube.com/playlist?list=PLc68FDvlyTaIDVz1zG-FVdVb5XW29aGT3&si=WWzsDduDe3aWabDi By ( Alja Soft )
 
 ©2024 Muhammad Ardiansyah Hermawan 
 
@@ -35,6 +36,3 @@ dan sumber browser dari <MalasNgoding.com> untuk metode upload data gambar.
 - Import database ( .sql )
 - Sistem siap untuk digunakan 
 
-## Lisensi
-
-Non - Project [ Gunakan dengan bebas code ini ]
