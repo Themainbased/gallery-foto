@@ -11,7 +11,7 @@ Gallery foto sebuah platform sosial media berbasis gambar
 
 ## Fitur
 
-- Unique ID ( Pengamanan id )
+- Unique ID ( Foto dengan numberic unik )
 - Encryption ( data password user )
 - Profile ( Edit data pribadi user )
 - Like
