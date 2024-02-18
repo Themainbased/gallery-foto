@@ -14,6 +14,8 @@ if (!isset($_SESSION['userid'])) {
     <title>Halaman Komentar</title>
     <!-- Add Bootstrap CSS link here -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/style.css">
+    <link rel="stylesheet" href="resources/komentar.css">
 </head>
 
 <body>
@@ -67,21 +69,23 @@ if (!isset($_SESSION['userid'])) {
                         </div>
                         <input type="submit" class="btn btn-primary" value="Tambah">
                     </div>
-                <?php
+                </div>
+            <?php
             }
-                ?>
+            ?>
         </form>
 
         <div class="mt-5">
             <?php
             include "koneksi.php";
             $userid = $_SESSION['userid'];
-            $sql = mysqli_query($conn, "SELECT* from komentarfoto,user where komentarfoto.userid='$userid' and komentarfoto.userid=user.userid");
+            // Perbarui query untuk memasukkan judul foto yang sesuai
+            $sql = mysqli_query($conn, "SELECT komentarfoto.*, foto.judulfoto FROM komentarfoto INNER JOIN foto ON komentarfoto.fotoid = foto.fotoid WHERE komentarfoto.userid='$userid'");
             while ($data = mysqli_fetch_array($sql)) {
             ?>
                 <div class="card mt-3">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $data['namalengkap'] ?></h5>
+                        <h5 class="card-title"><?= $data['judulfoto'] ?></h5>
                         <p class="card-text"><?= $data['isikomentar'] ?></p>
                         <p class="card-text"><small class="text-muted"><?= $data['tanggalkomentar'] ?></small></p>
                     </div>

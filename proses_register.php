@@ -13,7 +13,7 @@ $alamat=$_POST["alamat"];
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 // Proses Memasukan Field Yang Sudah diisi kedalam tabel user pokokna mah gaes 
-$sql=mysqli_query($conn, "insert into user values('','$username','$hashedPassword','$email','$namalengkap','$alamat')");
+$sql=mysqli_query($conn, "INSERT into user values('','$username','$hashedPassword','$email','$namalengkap','$alamat')");
 
 // Setelah Proses Penginputan Maka a0kan langsung mengarahkan ke halaman login
 header("location:login.php");

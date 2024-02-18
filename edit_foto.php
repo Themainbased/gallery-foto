@@ -47,46 +47,46 @@ if (!isset($_SESSION['userid'])) {
         <h1 class="mt-5">Halaman Edit Foto</h1>
         <p>Hai, <b><?= $_SESSION['namalengkap'] ?></b></p>
 
-
         <form action="update_foto.php" method="post" enctype="multipart/form-data">
             <?php
             include "koneksi.php";
-            $fotoid = $_GET['fotoid'];
-            $sql = mysqli_query($conn, "select * from foto where fotoid='$fotoid'");
-            while ($data = mysqli_fetch_array($sql)) {
+            // Periksa apakah fotoid tersedia dalam URL
+            if (isset($_GET['fotoid'])) {
+                $fotoid = $_GET['fotoid'];
+                $sql = mysqli_query($conn, "select * from foto where fotoid='$fotoid'");
+                while ($data = mysqli_fetch_array($sql)) {
             ?>
-                <input type="hidden" name="fotoid" value="<?= $data['fotoid'] ?>">
-                <div class="form-group">
-                    <label for="judulfoto">Judul</label>
-                    <input type="text" class="form-control" name="judulfoto" value="<?= $data['judulfoto'] ?>">
-                </div>
-                <div class="form-group">
-                    <label for="deskripsifoto">Deskripsi</label>
-                    <input type="text" class="form-control" name="deskripsifoto" value="<?= $data['deskripsifoto'] ?>">
-                </div>
-                <div class="form-group">
-                    <label for="lokasifile">Lokasi File</label>
-                    <input type="file" class="form-control-file" name="lokasifile">
-                </div>
-                <div class="form-group">
-                    <label for="albumid">Album</label>
-                    <select class="form-control" name="albumid">
-                        <?php
-                        $userid = $_SESSION['userid'];
-                        $sql2 = mysqli_query($conn, "select * from album where userid='$userid'");
-                        while ($data2 = mysqli_fetch_array($sql2)) {
-                            $selected = ($data2['albumid'] == $data['albumid']) ? 'selected' : '';
-                        ?>
-                            <option value="<?= $data2['albumid'] ?>" <?= $selected ?>><?= $data2['namaalbum'] ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Ubah">
-                </div>
+                    <input type="hidden" name="fotoid" value="<?= $data['fotoid'] ?>">
+                    <div class="form-group">
+                        <label for="judulfoto">Judul</label>
+                        <input type="text" class="form-control" name="judulfoto" value="<?= $data['judulfoto'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsifoto">Deskripsi</label>
+                        <input type="text" class="form-control" name="deskripsifoto" value="<?= $data['deskripsifoto'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="albumid">Album</label>
+                        <select class="form-control" name="albumid">
+                            <?php
+                            $userid = $_SESSION['userid'];
+                            $sql2 = mysqli_query($conn, "select * from album where userid='$userid'");
+                            while ($data2 = mysqli_fetch_array($sql2)) {
+                                $selected = ($data2['albumid'] == $data['albumid']) ? 'selected' : '';
+                            ?>
+                                <option value="<?= $data2['albumid'] ?>" <?= $selected ?>><?= $data2['namaalbum'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Ubah">
+                    </div>
             <?php
+                }
+            } else {
+                echo "Fotoid tidak ditemukan.";
             }
             ?>
         </form>

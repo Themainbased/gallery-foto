@@ -15,7 +15,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.php" ><img src="resources/logo/logo.png" width="50px"></a>
+            <a class="navbar-brand" href="index.php"><img src="resources/logo/logo.png" width="50px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -81,7 +81,7 @@
             // Check if search parameter is set
             if (isset($_GET['search'])) {
                 $search = mysqli_real_escape_string($conn, $_GET['search']);
-                $sql = mysqli_query($conn, "SELECT * FROM foto, user WHERE foto.userid = user.userid AND namalengkap LIKE '%$search%'");
+                $sql = mysqli_query($conn, "SELECT * FROM foto, user WHERE foto.userid = user.userid AND judulfoto LIKE '%$search%'");
             } else {
                 $sql = mysqli_query($conn, "SELECT * FROM foto, user WHERE foto.userid = user.userid");
             }
@@ -119,7 +119,7 @@
             <?php
                 }
             } else {
-                echo '<div class="col text-center"><div class="alert alert-info" role="alert">Tidak relevan nama user yang anda cari</div></div>';
+                echo '<div class="col text-center"><div class="alert alert-info" role="alert">Tidak relevan foto yang anda cari</div></div>';
             }
             ?>
         </div>

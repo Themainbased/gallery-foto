@@ -66,38 +66,41 @@ $start = ($page - 1) * $limit;
         <h1>Halaman Foto</h1>
         <p>Hai, <b> <?= $_SESSION['namalengkap'] ?></b></p>
 
-        <!-- Form Tambah Foto -->
-        <form action="tambah_foto.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="judulfoto">Judul</label>
-                <input type="text" class="form-control" name="judulfoto">
-            </div>
-            <div class="form-group">
-                <label for="deskripsifoto">Deskripsi</label>
-                <input type="text" class="form-control" name="deskripsifoto">
-            </div>
-            <div class="form-group">
-                <label for="lokasifile">Lokasi File</label>
-                <input type="file" class="form-control" name="lokasifile">
-            </div>
-            <div class="form-group">
-                <label for="albumid">Album</label>
-                <select class="form-control" name="albumid">
-                    <option value="">-- Pilih Album --</option>
-                    <?php
-                    $sql_album = mysqli_query($conn, "SELECT * FROM album WHERE userid='$userid'");
-                    while ($data_album = mysqli_fetch_array($sql_album)) {
-                    ?>
-                        <option value="<?= $data_album['albumid'] ?>"><?= $data_album['namaalbum'] ?></option>
-                    <?php
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
+      <!-- Form Tambah Foto -->
+<form action="tambah_foto.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <div class="form-group">
+        <label for="judulfoto">Judul</label>
+        <input type="text" class="form-control" name="judulfoto">
+    </div>
+    <div class="form-group">
+        <label for="deskripsifoto">Deskripsi</label>
+        <input type="text" class="form-control" name="deskripsifoto">
+    </div>
+    <div class="form-group">
+        <label for="lokasifile">Lokasi File</label>
+        <input type="file" class="form-control" name="lokasifile">
+    </div>
+    <div class="form-group">
+        <label for="albumid">Album</label>
+        <select class="form-control" name="albumid" id="albumid">
+            <option value="">-- Pilih Album --</option>
+            <?php
+            $sql_album = mysqli_query($conn, "SELECT * FROM album WHERE userid='$userid'");
+            while ($data_album = mysqli_fetch_array($sql_album)) {
+            ?>
+                <option value="<?= $data_album['albumid'] ?>"><?= $data_album['namaalbum'] ?></option>
+            <?php
+            }
+            ?>
+        </select>
+    </div>
+ 
+    <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Tambah">
             </div>
         </form>
+
+
 
         <!-- Tabel Foto -->
         <div class="table-responsive mt-5">
@@ -173,19 +176,12 @@ $start = ($page - 1) * $limit;
         </nav>
     </div>
 
-    <script>
-        function confirmDelete(fotoid) {
-            var confirmation = confirm("Apakah Anda yakin ingin menghapus foto ini?");
-            if (confirmation) {
-                window.location.href = "hapus_foto.php?fotoid=" + fotoid;
-            }
-        }
-    </script>
-
     <!-- Add Bootstrap JS and Popper.js scripts here -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="resources/main.js"></script>
 </body>
+
 
 </html>
