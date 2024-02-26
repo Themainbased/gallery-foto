@@ -32,7 +32,8 @@
 
                     <div class="mb-3">
                         <label for="namalengkap" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" name="namalengkap" required>
+                        <input type="text" class="form-control" name="namalengkap" id="namalengkap" required>
+                        <div id="namaWarning" class="form-text text-danger d-none">Nama Lengkap harus 3 character atau lebih.</div>
                     </div>
 
                     <div class="mb-3">
@@ -52,6 +53,19 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById("namalengkap").addEventListener("input", function() {
+            var namaInput = this.value;
+            var namaWarning = document.getElementById("namaWarning");
+            
+            if (namaInput.length < 3) {
+                namaWarning.classList.remove("d-none");
+            } else {
+                namaWarning.classList.add("d-none");
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,11 +1,10 @@
 <?php
-session_start();
 include('koneksi.php');
 include('proses_profile.php');
 
 
 // Check if the user is already logged in
-if (!isset($_SESSION['userid'])) {
+if (!isset($_SESSION['userid'])) { 
     header("location: login.php");
     exit();
 }
@@ -39,7 +38,7 @@ if (!isset($_SESSION['userid'])) {
         <form method="POST" action="profile.php" >
         <div class="form-group">
                 <label for="email">username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($userData['username']) ? htmlspecialchars($userData['username']) : ''; ?> " disabled>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($userData['username']) ? htmlspecialchars($userData['username']) : ''; ?> ">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>

@@ -1,15 +1,28 @@
 <?php
 
+// Start or resume the session
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+    // Redirect to the login page or handle the case where the user is not logged in
+    header("location: login.php");
+    exit();
+}
+
+// Assuming you have established a database connection named $conn
+
 // Get user data from the session
 $userid = $_SESSION['userid'];
 
 // Process data editing
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Prepare variables
     $newUsername = $_POST["username"];
     $newEmail = $_POST["email"];
     $newFullName = $_POST["namalengkap"];
     $newAddress = $_POST["alamat"];
-
+    
     // Perform data update
     $updateQuery = "UPDATE user SET username=?, email=?, namalengkap=?, alamat=? WHERE userid=?";
     $stmt = $conn->prepare($updateQuery);
@@ -23,6 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         // Update session with new data
         $_SESSION['namalengkap'] = $newFullName;
+        $_SESSION['username'] = $newUsername; // Update username in session
+        
+        // Regenerate session ID for security
+        session_regenerate_id(true);
 
         // Redirect to the profile page with a success message
         header("location: profile.php?success=1");

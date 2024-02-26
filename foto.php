@@ -34,8 +34,7 @@ $start = ($page - 1) * $limit;
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="#"><img src="resources/logo/logo.png" width="50px"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,8 +43,7 @@ $start = ($page - 1) * $limit;
                 <li class="nav-item "><a class="nav-link" href="album.php">Album</a></li>
                 <li class="nav-item active"><a class="nav-link" href="foto.php">Foto</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?= $_SESSION['namalengkap'] ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,36 +64,36 @@ $start = ($page - 1) * $limit;
         <h1>Halaman Foto</h1>
         <p>Hai, <b> <?= $_SESSION['namalengkap'] ?></b></p>
 
-      <!-- Form Tambah Foto -->
-<form action="tambah_foto.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-    <div class="form-group">
-        <label for="judulfoto">Judul</label>
-        <input type="text" class="form-control" name="judulfoto">
-    </div>
-    <div class="form-group">
-        <label for="deskripsifoto">Deskripsi</label>
-        <input type="text" class="form-control" name="deskripsifoto">
-    </div>
-    <div class="form-group">
-        <label for="lokasifile">Lokasi File</label>
-        <input type="file" class="form-control" name="lokasifile">
-    </div>
-    <div class="form-group">
-        <label for="albumid">Album</label>
-        <select class="form-control" name="albumid" id="albumid">
-            <option value="">-- Pilih Album --</option>
-            <?php
-            $sql_album = mysqli_query($conn, "SELECT * FROM album WHERE userid='$userid'");
-            while ($data_album = mysqli_fetch_array($sql_album)) {
-            ?>
-                <option value="<?= $data_album['albumid'] ?>"><?= $data_album['namaalbum'] ?></option>
-            <?php
-            }
-            ?>
-        </select>
-    </div>
- 
-    <div class="form-group">
+        <!-- Form Tambah Foto -->
+        <form action="tambah_foto.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="judulfoto">Judul</label>
+                <input type="text" class="form-control" name="judulfoto">
+            </div>
+            <div class="form-group">
+                <label for="deskripsifoto">Deskripsi</label>
+                <input type="text" class="form-control" name="deskripsifoto">
+            </div>
+            <div class="form-group">
+                <label for="lokasifile">Lokasi File</label>
+                <input type="file" class="form-control" name="lokasifile">
+            </div>
+            <div class="form-group">
+                <label for="albumid">Album</label>
+                <select class="form-control" name="albumid" id="albumid">
+                    <option value="">-- Pilih Album --</option>
+                    <?php
+                    $sql_album = mysqli_query($conn, "SELECT * FROM album WHERE userid='$userid'");
+                    while ($data_album = mysqli_fetch_array($sql_album)) {
+                    ?>
+                        <option value="<?= $data_album['albumid'] ?>"><?= $data_album['namaalbum'] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Tambah">
             </div>
         </form>
