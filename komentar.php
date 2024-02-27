@@ -1,13 +1,14 @@
 <?php
+include "koneksi.php";
 session_start();
 if (!isset($_SESSION['userid'])) {
     header("location:login.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@ if (!isset($_SESSION['userid'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/style.css">
     <link rel="stylesheet" href="resources/komentar.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
@@ -51,7 +53,6 @@ if (!isset($_SESSION['userid'])) {
     <div class="container ">
         <form action="tambah_komentar.php" method="post">
             <?php
-            include "koneksi.php";
             $fotoid = $_GET['fotoid'];
             $sql = mysqli_query($conn, "SELECT * from foto where fotoid='$fotoid'");
             while ($data = mysqli_fetch_array($sql)) {
@@ -77,15 +78,21 @@ if (!isset($_SESSION['userid'])) {
 
         <div class="mt-5">
             <?php
-            include "koneksi.php";
-            $userid = $_SESSION['userid'];
-            // Perbarui query untuk memasukkan judul foto yang sesuai
-            $sql = mysqli_query($conn, "SELECT komentarfoto.*, foto.judulfoto FROM komentarfoto INNER JOIN foto ON komentarfoto.fotoid = foto.fotoid WHERE komentarfoto.userid='$userid'");
+            // Ambil fotoid dari URL
+            $fotoid = $_GET['fotoid'];
+
+            // Perbarui query untuk mengambil komentar yang terkait dengan fotoid
+            $sql = mysqli_query($conn, "SELECT komentarfoto.*, foto.judulfoto, user.namalengkap 
+            FROM komentarfoto 
+            INNER JOIN foto ON komentarfoto.fotoid = foto.fotoid 
+            INNER JOIN user ON komentarfoto.userid = user.userid 
+            WHERE komentarfoto.fotoid='$fotoid'");
             while ($data = mysqli_fetch_array($sql)) {
             ?>
-                <div class="card mt-3">
+                <div class="card mt-3"  data-aos="fade-down" data-aos-delay="300">
                     <div class="card-body">
                         <h5 class="card-title"><?= $data['judulfoto'] ?></h5>
+                        <p class="card-text">User: <?= $data['namalengkap'] ?></p>
                         <p class="card-text"><?= $data['isikomentar'] ?></p>
                         <p class="card-text"><small class="text-muted"><?= $data['tanggalkomentar'] ?></small></p>
                     </div>
@@ -100,6 +107,10 @@ if (!isset($_SESSION['userid'])) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
 </body>
 
 </html>
