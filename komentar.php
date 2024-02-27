@@ -9,6 +9,7 @@ if (!isset($_SESSION['userid'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,11 +90,22 @@ if (!isset($_SESSION['userid'])) {
             WHERE komentarfoto.fotoid='$fotoid'");
             while ($data = mysqli_fetch_array($sql)) {
             ?>
-                <div class="card mt-3"  data-aos="fade-down" data-aos-delay="300">
+                <div class="card mt-3" data-aos="fade-down" data-aos-delay="100">
                     <div class="card-body">
                         <h5 class="card-title"><?= $data['judulfoto'] ?></h5>
-                        <p class="card-text">User: <?= $data['namalengkap'] ?></p>
-                        <p class="card-text"><?= $data['isikomentar'] ?></p>
+                        <?php
+                        // Ambil foto profil pengguna yang memberikan komentar
+                        $userId = $data['userid'];
+                        $queryFotoProfil = mysqli_query($conn, "SELECT profile FROM user WHERE userid='$userId'");
+                        $fotoProfil = mysqli_fetch_assoc($queryFotoProfil);
+                        ?>
+                        <div class="d-flex align-items-center">
+                            <?php if ($fotoProfil && $fotoProfil['profile']) : ?>
+                                <img src="<?= $fotoProfil['profile'] ?>" class="rounded mr-2" width="30" alt="Profile Picture">
+                            <?php endif; ?>
+                            <p class="card-text mb-0"><?= $data['namalengkap'] ?></p>
+                        </div>
+                        <p class="card-text mt-3"><?= $data['isikomentar'] ?></p>
                         <p class="card-text"><small class="text-muted"><?= $data['tanggalkomentar'] ?></small></p>
                     </div>
                 </div>
@@ -108,9 +120,9 @@ if (!isset($_SESSION['userid'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
