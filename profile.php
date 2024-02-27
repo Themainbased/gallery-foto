@@ -4,7 +4,7 @@ include('proses_profile.php');
 
 
 // Check if the user is already logged in
-if (!isset($_SESSION['userid'])) { 
+if (!isset($_SESSION['userid'])) {
     header("location: login.php");
     exit();
 }
@@ -35,8 +35,30 @@ if (!isset($_SESSION['userid'])) {
         ?>
 
         <br>
-        <form method="POST" action="profile.php" >
-        <div class="form-group">
+
+        <?php if (isset($userData['profile'])) : ?>
+            <div class="form-group text-center">
+                <img src="<?php echo $userData['profile']; ?>" alt="Profile Picture" width="150" class="rounded"><br>
+                <small class="text-muted">Click 'Choose File' button to change profile picture</small>
+            </div>
+        <?php else : ?>
+            <!-- Display upload button if profile picture doesn't exist -->
+            <div class="form-group">
+                <label for="profile_picture">Profile Picture:</label>
+                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="profile.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="profile_picture">Profile Picture:</label>
+                <?php if (isset($userData['profile_picture']) && !empty($userData['profile_picture'])) : ?>
+                    <img src="<?php echo $userData['profile_picture']; ?>" class="img-fluid mb-2" alt="Profile Picture">
+                <?php endif; ?>
+                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture">
+            </div>
+
+            <div class="form-group">
                 <label for="email">username</label>
                 <input type="text" class="form-control" id="username" name="username" value="<?php echo isset($userData['username']) ? htmlspecialchars($userData['username']) : ''; ?> ">
             </div>
@@ -55,6 +77,7 @@ if (!isset($_SESSION['userid'])) {
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="foto.php" class="btn btn-danger">Back To Menu</a>
         </form>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
